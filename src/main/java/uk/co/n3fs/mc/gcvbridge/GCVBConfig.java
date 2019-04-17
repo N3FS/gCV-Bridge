@@ -34,26 +34,26 @@ public class GCVBConfig {
     public GCVBConfig(ConfigurationNode root) throws Exception {
         this.root = root;
 
-        token = root.getNode("discord.token").getString();
-        inChannels = root.getNode("discord.in-channels").getList(TypeToken.of(Long.class));
-        outChannels = root.getNode("discord.out-channels").getList(TypeToken.of(Long.class));
+        token = root.getNode("discord", "token").getString();
+        inChannels = root.getNode("discord", "in-channels").getList(TypeToken.of(Long.class));
+        outChannels = root.getNode("discord", "out-channels").getList(TypeToken.of(Long.class));
 
-        playerlistEnabled = root.getNode("discord.playerlist.enabled").getBoolean(true);
-        playerlistFormat = root.getNode("discord.playerlist.format").getString("**{count} players online:** ```\n{players}\n```");
-        playerlistSeparator = root.getNode("discord.playerlist.separator").getString(", ");
-        playerlistCommandRemoveDelay = root.getNode("discord.playerlist.command-remove-delay").getInt(0);
-        playerlistResponseRemoveDelay = root.getNode("discord.playerlist.response-remove-delay").getInt(10);
+        playerlistEnabled = root.getNode("discord", "playerlist", "enabled").getBoolean(true);
+        playerlistFormat = root.getNode("discord", "playerlist", "format").getString("**{count} players online:** ```\n{players}\n```");
+        playerlistSeparator = root.getNode("discord", "playerlist", "separator").getString(", ");
+        playerlistCommandRemoveDelay = root.getNode("discord", "playerlist", "command-remove-delay").getInt(0);
+        playerlistResponseRemoveDelay = root.getNode("discord", "playerlist", "response-remove-delay").getInt(10);
 
         if (token == null) {
             throw new InvalidConfigException("You need to set a bot token in config.yml!");
         }
 
-        joinFormat = root.getNode("velocity.join-format").getString("**{player} joined the game**");
-        quitFormat = root.getNode("velocity.quit-format").getString("**{player} left the game**");
-        requireSeePerm = root.getNode("velocity.require-see-permission").getBoolean(false);
-        requireSendPerm = root.getNode("velocity.require-send-permission").getBoolean(false);
+        joinFormat = root.getNode("velocity", "join-format").getString("**{player} joined the game**");
+        quitFormat = root.getNode("velocity", "quit-format").getString("**{player} left the game**");
+        requireSeePerm = root.getNode("velocity", "require-see-permission").getBoolean(false);
+        requireSendPerm = root.getNode("velocity", "require-send-permission").getBoolean(false);
 
-        gchatInFormat = root.getNode("gchat.in-format").getString("default");
+        gchatInFormat = root.getNode("gchat", "in-format").getString("default");
     }
 
     public class InvalidConfigException extends Exception {

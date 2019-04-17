@@ -3,7 +3,6 @@ package uk.co.n3fs.mc.gcvbridge.velocity;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.connection.PostLoginEvent;
-import org.javacord.api.DiscordApi;
 import uk.co.n3fs.mc.gcvbridge.GCVBridge;
 
 public class VelocityListener {
