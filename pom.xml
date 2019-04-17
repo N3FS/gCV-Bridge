@@ -9,8 +9,6 @@
     <version>0.1</version>
     <name>gCV-Bridge</name>
 
-
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -67,7 +65,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -116,6 +114,10 @@
                                 <relocation>
                                     <pattern>com.neovisionaries.ws.client</pattern>
                                     <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.wsclient</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.apache.logging</pattern>
+                                    <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.logging</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
