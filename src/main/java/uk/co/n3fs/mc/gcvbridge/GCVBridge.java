@@ -1,6 +1,7 @@
 package uk.co.n3fs.mc.gcvbridge;
 
 import com.google.inject.Inject;
+import com.velocitypowered.api.event.PostOrder;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyReloadEvent;
@@ -49,7 +50,7 @@ public class GCVBridge {
     private GChatApi gcApi;
     private DiscordApi dApi;
 
-    @Subscribe
+    @Subscribe(order = PostOrder.LAST)
     public void onProxyInit(ProxyInitializeEvent event) {
         logger.info("Enabling gCV-Bridge v" + getDescription().getVersion().get());
 
@@ -69,6 +70,7 @@ public class GCVBridge {
 
     @Subscribe
     public boolean onReload(ProxyReloadEvent event) {
+        logger.info("Reloading config...");
         return reloadConfig();
     }
 
@@ -82,8 +84,11 @@ public class GCVBridge {
         }
 
         if (!config.getToken().equals(oldToken)) {
+            logger.info("Bot login details changed - restarting the bot...");
             startBot();
         }
+
+        logger.info("Config reloaded.");
 
         return true;
     }
@@ -113,7 +118,10 @@ public class GCVBridge {
             .addResumeListener(connListener::onResume)
             .addMessageCreateListener(commandListener::onPlayerlist)
             .addMessageCreateListener(chatListener::onMessage)
-            .login().thenAccept(api -> dApi = api);
+            .login().thenAccept(api -> {
+            dApi = api;
+            logger.info("Connected to Discord!");
+        });
     }
 
     private File getBundledFile(String name) {
@@ -143,7 +151,7 @@ public class GCVBridge {
         if (gcApi == null) {
             gcApi = GChat.getApi();
         }
-        
+
         return gcApi;
     }
 
