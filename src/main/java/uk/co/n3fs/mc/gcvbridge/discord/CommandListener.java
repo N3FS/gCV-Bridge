@@ -2,7 +2,6 @@ package uk.co.n3fs.mc.gcvbridge.discord;
 
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
-import com.velocitypowered.api.util.GameProfile;
 import org.javacord.api.entity.message.Message;
 import org.javacord.api.event.message.MessageCreateEvent;
 import uk.co.n3fs.mc.gcvbridge.GCVBridge;
@@ -24,7 +23,7 @@ public class CommandListener {
         if (event.getMessageAuthor().isYourself()) return;
 
         Message commandMsg = event.getMessage();
-        if (!plugin.getConfig().isPlayerlistEnabled() || !commandMsg.getReadableContent().startsWith("playerlist")) return;
+        if (!plugin.getConfig().isPlayerlistEnabled() || !commandMsg.getReadableContent().toLowerCase().startsWith("playerlist")) return;
 
         final int count = proxy.getPlayerCount();
         final String players = proxy.getAllPlayers().stream()
