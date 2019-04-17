@@ -21,7 +21,9 @@ public class ChatListener {
     }
 
     public void onMessage(MessageCreateEvent event) {
+        if (plugin.getConfig().isPlayerlistEnabled() && event.getMessage().getReadableContent().startsWith("playerlist")) return;
         if (!plugin.getConfig().getInChannels(event.getApi()).contains(event.getChannel())) return;
+        if (event.getMessageAuthor().isYourself()) return;
 
         ChatFormat format = plugin.getConfig().getInFormat(plugin.getGChatApi());
         String message = event.getReadableMessageContent();

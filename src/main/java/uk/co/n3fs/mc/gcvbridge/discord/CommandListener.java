@@ -21,13 +21,14 @@ public class CommandListener {
     }
 
     public void onPlayerlist(MessageCreateEvent event) {
+        if (event.getMessageAuthor().isYourself()) return;
+
         Message commandMsg = event.getMessage();
         if (!plugin.getConfig().isPlayerlistEnabled() || !commandMsg.getReadableContent().startsWith("playerlist")) return;
 
         final int count = proxy.getPlayerCount();
         final String players = proxy.getAllPlayers().stream()
-            .map(Player::getGameProfile)
-            .map(GameProfile::getName)
+            .map(Player::getUsername)
             .collect(Collectors.joining(plugin.getConfig().getPlayerlistSeparator()));
 
         final String response = plugin.getConfig().getPlayerlistFormat()
