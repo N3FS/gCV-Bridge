@@ -48,8 +48,8 @@ public class GCVBConfig {
             throw new InvalidConfigException("You need to set a bot token in config.yml!");
         }
 
-        joinFormat = root.getNode("velocity.join-format").getString("**{player} connected to the server**");
-        quitFormat = root.getNode("velocity.quit-format").getString("**{player} disconnected from the server**");
+        joinFormat = root.getNode("velocity.join-format").getString("**{player} joined the game**");
+        quitFormat = root.getNode("velocity.quit-format").getString("**{player} left the game**");
         requireSeePerm = root.getNode("velocity.require-see-permission").getBoolean(false);
         requireSendPerm = root.getNode("velocity.require-send-permission").getBoolean(false);
 

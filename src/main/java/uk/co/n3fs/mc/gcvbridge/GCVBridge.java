@@ -20,6 +20,8 @@ import org.slf4j.Logger;
 import uk.co.n3fs.mc.gcvbridge.discord.ChatListener;
 import uk.co.n3fs.mc.gcvbridge.discord.CommandListener;
 import uk.co.n3fs.mc.gcvbridge.discord.ConnectionListener;
+import uk.co.n3fs.mc.gcvbridge.velocity.GChatListener;
+import uk.co.n3fs.mc.gcvbridge.velocity.VelocityListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,6 +59,9 @@ public class GCVBridge {
         } catch (Exception e) {
             throw new RuntimeException("Failed to load config", e);
         }
+
+        proxy.getEventManager().register(this, new GChatListener(this));
+        proxy.getEventManager().register(this, new VelocityListener(this));
 
         gcApi = GChat.getApi();
         startBot();

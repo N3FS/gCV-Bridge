@@ -31,9 +31,10 @@ discord:
 # Velocity settings
 velocity:
   # The format of the message sent to Discord when a player connects.
-  join-format: "**{player} connected to the server**"
+  # Supported placeholders: {player}
+  join-format: "**{player} joined the game**"
   # The format of the message sent to Discord when a player disconnects.
-  quit-format: "**{player} disconnected from the server**"
+  quit-format: "**{player} left the game**"
   # Whether or not a player needs the "gcvb.see" permission to see incoming messages from Discord.
   require-see-permission: false
   # Whether or not players need the "gcvb.send" permission for their messages to be sent to Discord.
@@ -44,5 +45,5 @@ velocity:
 gchat:
   # The name of the gChat format to use for incoming messages from Discord.
   # This should be defined in the gChat config.yml, then the name set below.
-  # You can also create a Discord-specific format and use the {role} placeholder.
+  # You can create a format just for Discord if you want.
   in-format: default
