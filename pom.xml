@@ -76,15 +76,19 @@
                             <minimizeJar>false</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <artifactSet>
-                                <excludes>
-                                    <exclude>com.google.guava:guava</exclude>
-                                    <exclude>org.slf4j:slf4j-api</exclude>
-                                    <exclude>org.checkerframework:*</exclude>
-                                    <exclude>com.google.code.findbugs:jsr305</exclude>
-                                    <exclude>com.google.errorprone:error_prone_annotations</exclude>
-                                    <exclude>com.google.j2objc:j2objc-annotations</exclude>
-                                    <exclude>org.codehaus.mojo:animal-sniffer-annotations</exclude>
-                                </excludes>
+                                <includes>
+                                    <include>org.javacord:javacord-api</include>
+                                    <include>org.javacord:javacord-core</include>
+                                    <include>com.squareup.okhttp3:*</include>
+                                    <include>com.squareup.okio:okio</include>
+                                    <include>com.fasterxml.jackson.core:*</include>
+                                    <include>com.neovisionaries:nv-websocket-client</include>
+                                    <include>org.apache.logging.log4j:log4j-api</include>
+                                    <include>org.apache.logging.log4j:log4j-to-slf4j</include>
+                                    <include>org.spongepowered:configurate-yaml</include>
+                                    <include>org.spongepowered:configurate-core</include>
+                                    <include>org.yaml:snakeyaml</include>
+                                </includes>
                             </artifactSet>
                             <relocations>
                                 <relocation>
@@ -94,10 +98,6 @@
                                 <relocation>
                                     <pattern>org.yaml.snakeyaml</pattern>
                                     <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.snakeyaml</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>org.javacord</pattern>
-                                    <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.javacord</shadedPattern>
                                 </relocation>
                                 <relocation>
                                     <pattern>okio</pattern>
@@ -114,10 +114,6 @@
                                 <relocation>
                                     <pattern>com.neovisionaries.ws.client</pattern>
                                     <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.wsclient</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>org.apache.logging</pattern>
-                                    <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.logging</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
