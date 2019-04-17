@@ -190,6 +190,18 @@
             <id>sponge</id>
             <url>https://repo.spongepowered.org/maven</url>
         </repository>
+        <repository>
+            <id>bintray-n3fs-minecraft</id>
+            <url>https://dl.bintray.com/n3fs/minecraft</url>
+        </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-md678685-n3fs</id>
+            <name>md678685-n3fs</name>
+            <url>https://api.bintray.com/maven/md678685/n3fs/gcv-bridge/;publish=1</url>
+        </repository>
+    </distributionManagement>
 
 </project>
