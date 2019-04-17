@@ -38,7 +38,7 @@ public class ChatListener {
         TextComponent component = ComponentSerializers.LEGACY.deserialize(formattedMsg, '&').toBuilder()
             .applyDeep(m -> {
                 if (hover != null) {
-                    m.hoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.of(hover)));
+                    m.hoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, ComponentSerializers.LEGACY.deserialize(hover, '&')));
                 }
                 if (clickType != null) {
                     m.clickEvent(new ClickEvent(clickType, clickValue));
