@@ -44,7 +44,7 @@ public class GCVBConfig {
         playerlistCommandRemoveDelay = root.getNode("discord", "playerlist", "command-remove-delay").getInt(0);
         playerlistResponseRemoveDelay = root.getNode("discord", "playerlist", "response-remove-delay").getInt(10);
 
-        if (token == null) {
+        if (token == null || token.isEmpty()) {
             throw new InvalidConfigException("You need to set a bot token in config.yml!");
         }
 
