@@ -140,6 +140,10 @@ public class GCVBridge {
     }
 
     public GChatApi getGChatApi() {
+        if (gcApi == null) {
+            gcApi = GChat.getApi();
+        }
+        
         return gcApi;
     }
 
