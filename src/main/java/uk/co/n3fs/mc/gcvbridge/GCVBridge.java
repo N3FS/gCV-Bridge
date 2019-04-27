@@ -5,6 +5,7 @@ import com.velocitypowered.api.event.PostOrder;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyReloadEvent;
+import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.PluginContainer;
@@ -66,6 +67,12 @@ public class GCVBridge {
 
         gcApi = GChat.getApi();
         startBot();
+    }
+
+    @Subscribe(order = PostOrder.LATE)
+    public void onProxyShutdown(ProxyShutdownEvent event) {
+        logger.info("Shutting down Discord bot...");
+        dApi.disconnect();
     }
 
     @Subscribe
