@@ -24,6 +24,7 @@ public class CommandListener {
 
         Message commandMsg = event.getMessage();
         if (!plugin.getConfig().isPlayerlistEnabled() || !commandMsg.getReadableContent().toLowerCase().startsWith("playerlist")) return;
+        if (!plugin.getConfig().getInChannels(event.getApi()).contains(event.getChannel())) return;
 
         final int count = proxy.getPlayerCount();
         final String players = proxy.getAllPlayers().stream()
