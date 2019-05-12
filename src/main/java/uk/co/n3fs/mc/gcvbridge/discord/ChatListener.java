@@ -1,5 +1,6 @@
 package uk.co.n3fs.mc.gcvbridge.discord;
 
+import com.vdurmont.emoji.EmojiParser;
 import com.velocitypowered.api.proxy.ProxyServer;
 import me.lucko.gchat.api.ChatFormat;
 import net.kyori.text.TextComponent;
@@ -28,6 +29,7 @@ public class ChatListener {
 
         ChatFormat format = plugin.getConfig().getInFormat(plugin.getGChatApi());
         String message = event.getReadableMessageContent();
+        message = EmojiParser.parseToAliases(message);
         MessageAuthor author = event.getMessageAuthor();
 
         String formattedMsg = replacePlaceholders(format.getFormatText(), author, message);
