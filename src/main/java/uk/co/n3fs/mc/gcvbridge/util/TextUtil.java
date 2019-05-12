@@ -16,14 +16,19 @@ public class TextUtil {
             switch (decoration) {
                 case BOLD:
                     currentSegment = String.format("**%s**", currentSegment);
+                    break;
                 case ITALIC:
                     currentSegment = String.format("*%s*", currentSegment);
+                    break;
                 case UNDERLINED:
                     currentSegment = String.format("__%s__", currentSegment);
+                    break;
                 case STRIKETHROUGH:
                     currentSegment = String.format("~~%s~~", currentSegment);
+                    break;
                 case OBFUSCATED:
                     currentSegment = String.format("||%s||", currentSegment);
+                    break;
             }
         }
 
