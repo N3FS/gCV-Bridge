@@ -18,7 +18,7 @@ public class TextUtil {
                     currentSegment = String.format("**%s**", currentSegment);
                 case ITALIC:
                     currentSegment = String.format("*%s*", currentSegment);
-                case UNDERLINE:
+                case UNDERLINED:
                     currentSegment = String.format("__%s__", currentSegment);
                 case STRIKETHROUGH:
                     currentSegment = String.format("~~%s~~", currentSegment);
