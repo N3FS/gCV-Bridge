@@ -89,7 +89,7 @@
                                     <include>org.spongepowered:configurate-core</include>
                                     <include>org.yaml:snakeyaml</include>
                                     <include>com.vdurmont:emoji-java</include>
-                                    <include>com.json:json</include>
+                                    <include>org.json:json</include>
                                 </includes>
                             </artifactSet>
                             <relocations>
