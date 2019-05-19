@@ -88,6 +88,7 @@
                                     <include>org.spongepowered:configurate-yaml</include>
                                     <include>org.spongepowered:configurate-core</include>
                                     <include>org.yaml:snakeyaml</include>
+                                    <include>com.vdurmont:emoji-java</include>
                                 </includes>
                             </artifactSet>
                             <relocations>
@@ -114,6 +115,10 @@
                                 <relocation>
                                     <pattern>com.neovisionaries.ws.client</pattern>
                                     <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.wsclient</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com.vdurmont.emoji</pattern>
+                                    <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.emoji</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
