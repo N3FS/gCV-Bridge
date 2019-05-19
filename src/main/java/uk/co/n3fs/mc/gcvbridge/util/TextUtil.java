@@ -41,4 +41,10 @@ public class TextUtil {
         return base;
     }
 
+    public static String stripString(final String msg) {
+        return msg.replaceAll("@everyone", "(at)everyone")
+            .replaceAll("@here", "(at)here")
+            .replaceAll("<@&[0-9]+>", "");
+    }
+
 }

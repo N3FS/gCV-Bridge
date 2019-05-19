@@ -17,9 +17,10 @@ public class GChatListener {
     @Subscribe
     public void onGChatMessage(GChatMessageFormedEvent event) {
         if (plugin.getConfig().isRequireSendPerm() && !event.getSender().hasPermission("gcvb.send")) return;
+        final String msg = TextUtil.stripString(TextUtil.toMarkdown((TextComponent) event.getMessage()));
 
         plugin.getConfig().getOutChannels(plugin.getDApi())
-            .forEach(textChannel -> textChannel.sendMessage(TextUtil.toMarkdown((TextComponent) event.getMessage())));
+            .forEach(textChannel -> textChannel.sendMessage(msg));
     }
 
 }
