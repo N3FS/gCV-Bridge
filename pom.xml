@@ -89,6 +89,7 @@
                                     <include>org.spongepowered:configurate-core</include>
                                     <include>org.yaml:snakeyaml</include>
                                     <include>com.vdurmont:emoji-java</include>
+                                    <include>com.json:json</include>
                                 </includes>
                             </artifactSet>
                             <relocations>
@@ -119,6 +120,10 @@
                                 <relocation>
                                     <pattern>com.vdurmont.emoji</pattern>
                                     <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.emoji</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.json</pattern>
+                                    <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.orgdotjson</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
