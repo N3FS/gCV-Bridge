@@ -23,6 +23,7 @@ import uk.co.n3fs.mc.gcvbridge.discord.ChatListener;
 import uk.co.n3fs.mc.gcvbridge.discord.CommandListener;
 import uk.co.n3fs.mc.gcvbridge.discord.ConnectionListener;
 import uk.co.n3fs.mc.gcvbridge.velocity.GChatListener;
+import uk.co.n3fs.mc.gcvbridge.velocity.NeutronListener;
 import uk.co.n3fs.mc.gcvbridge.velocity.VelocityListener;
 
 import java.io.File;
@@ -38,7 +39,9 @@ import java.nio.file.Path;
     version = "VERSION", // filled in during build
     description = "A Discord bridge plugin for gChat for Velocity.",
     dependencies = {
-        @Dependency(id = "gchat-velocity")
+        @Dependency(id = "gchat-velocity"),
+        @Dependency(id = "neutron", optional = true),
+        @Dependency(id = "neutron-n3fs", optional = true)
     }
 )
 public class GCVBridge {
@@ -65,14 +68,21 @@ public class GCVBridge {
         proxy.getEventManager().register(this, new GChatListener(this));
         proxy.getEventManager().register(this, new VelocityListener(this));
 
+        if (isNeutron()) {
+            proxy.getEventManager().register(this, new NeutronListener(this));
+        }
+
         gcApi = GChat.getApi();
         startBot();
     }
 
     @Subscribe(order = PostOrder.LATE)
     public void onProxyShutdown(ProxyShutdownEvent event) {
-        logger.info("Shutting down Discord bot...");
-        dApi.disconnect();
+        proxy.getScheduler().buildTask(this, () -> {
+            logger.info("Shutting down Discord bot...");
+            dApi.disconnect();
+            logger.info("Bot disconnected successfully.");
+        }).schedule();
     }
 
     @Subscribe
@@ -168,5 +178,10 @@ public class GCVBridge {
 
     public DiscordApi getDApi() {
         return dApi;
+    }
+
+    private boolean isNeutron() {
+        return proxy.getPluginManager().getPlugin("neutron").isPresent()
+            || proxy.getPluginManager().getPlugin("neutron-n3fs").isPresent();
     }
 }

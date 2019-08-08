@@ -30,6 +30,7 @@ public class GCVBConfig {
     private final boolean requireSendPerm;
 
     private final String gchatInFormat;
+    private final String neutronAlertFormat;
 
     public GCVBConfig(ConfigurationNode root) throws Exception {
         this.root = root;
@@ -54,6 +55,7 @@ public class GCVBConfig {
         requireSendPerm = root.getNode("velocity", "require-send-permission").getBoolean(false);
 
         gchatInFormat = root.getNode("gchat", "in-format").getString("default");
+        neutronAlertFormat = root.getNode("neutron", "alert-format").getString("**BROADCAST** {message}");
     }
 
     public class InvalidConfigException extends Exception {
@@ -123,5 +125,9 @@ public class GCVBConfig {
             .filter(format -> format.getId().equalsIgnoreCase(gchatInFormat))
             .findFirst()
             .orElse(null);
+    }
+
+    public String getNeutronAlertFormat() {
+        return neutronAlertFormat;
     }
 }

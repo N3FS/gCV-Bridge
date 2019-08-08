@@ -47,3 +47,10 @@ gchat:
   # This should be defined in the gChat config.yml, then the name set below.
   # You can create a format just for Discord if you want.
   in-format: default
+
+# Neutron integration settings
+neutron:
+  # The format for sending Neutron /alert messages to Discord.
+  # Use {message} for the message and {author} for the sender's name.
+  # Leave blank ("") to disable sending alerts to Discord.
+  alert-format: "**BROADCAST** {message}"
