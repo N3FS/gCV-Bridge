@@ -38,10 +38,10 @@ public class ChatListener {
         ClickEvent.Action clickType = format.getClickType();
         String clickValue = replacePlaceholders(format.getClickValue(), author, message);
 
-        TextComponent component = LegacyComponentSerializer.INSTANCE.deserialize(formattedMsg, '&').toBuilder()
+        TextComponent component = LegacyComponentSerializer.legacyLinking().deserialize(formattedMsg, '&').toBuilder()
             .applyDeep(m -> {
                 if (hover != null) {
-                    m.hoverEvent(HoverEvent.of(HoverEvent.Action.SHOW_TEXT, LegacyComponentSerializer.INSTANCE.deserialize(hover, '&')));
+                    m.hoverEvent(HoverEvent.of(HoverEvent.Action.SHOW_TEXT, LegacyComponentSerializer.legacy().deserialize(hover, '&')));
                 }
                 if (clickType != null) {
                     m.clickEvent(ClickEvent.of(clickType, clickValue));
