@@ -95,6 +95,7 @@
                                     <include>org.yaml:snakeyaml</include>
                                     <include>com.vdurmont:emoji-java</include>
                                     <include>org.json:json</include>
+                                    <include>io.vavr:vavr</include>
                                 </includes>
                             </artifactSet>
                             <relocations>
@@ -129,6 +130,10 @@
                                 <relocation>
                                     <pattern>org.json</pattern>
                                     <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.orgdotjson</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>io.vavr</pattern>
+                                    <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.vavr</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
