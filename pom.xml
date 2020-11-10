@@ -93,9 +93,6 @@
                                     <include>com.neovisionaries:nv-websocket-client</include>
                                     <include>org.apache.logging.log4j:log4j-api</include>
                                     <include>org.apache.logging.log4j:log4j-to-slf4j</include>
-                                    <include>org.spongepowered:configurate-yaml</include>
-                                    <include>org.spongepowered:configurate-core</include>
-                                    <include>org.yaml:snakeyaml</include>
                                     <include>com.vdurmont:emoji-java</include>
                                     <include>org.json:json</include>
                                     <include>io.vavr:vavr</include>
@@ -103,14 +100,6 @@
                                 </includes>
                             </artifactSet>
                             <relocations>
-                                <relocation>
-                                    <pattern>ninja.leaping.configurate</pattern>
-                                    <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.configurate</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>org.yaml.snakeyaml</pattern>
-                                    <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.snakeyaml</shadedPattern>
-                                </relocation>
                                 <relocation>
                                     <pattern>okio</pattern>
                                     <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.okio</shadedPattern>
@@ -176,11 +165,6 @@
             <artifactId>velocity-api</artifactId>
             <version>1.1.0</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.spongepowered</groupId>
-            <artifactId>configurate-yaml</artifactId>
-            <version>3.6</version>
         </dependency>
         <dependency>
             <groupId>org.javacord</groupId>
