@@ -6,7 +6,7 @@
 
     <groupId>uk.co.n3fs.mc</groupId>
     <artifactId>gCV-Bridge</artifactId>
-    <version>0.2.2</version>
+    <version>0.3-SNAPSHOT</version>
     <name>gCV-Bridge</name>
 
     <properties>
@@ -15,10 +15,10 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <!-- For release -->
-        <full.version>${project.version}</full.version>
+        <!--<full.version>${project.version}</full.version>-->
 
         <!--suppress UnresolvedMavenProperty -->
-        <!--<full.version>${project.version}-dev-${git.closest.tag.commit.count}</full.version>-->
+        <full.version>${project.version}-dev-${git.closest.tag.commit.count}</full.version>
     </properties>
 
     <build>
@@ -174,7 +174,7 @@
         <dependency>
             <groupId>com.velocitypowered</groupId>
             <artifactId>velocity-api</artifactId>
-            <version>1.0.10</version>
+            <version>1.1.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -211,6 +211,11 @@
             <version>3.0.0-SNAPSHOT</version>
             <systemPath>${basedir}/lib/Neutron_N3FS.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>dev.vankka</groupId>
+            <artifactId>MCDiscordReserializer</artifactId>
+            <version>4.1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -225,6 +230,10 @@
         <repository>
             <id>bintray-n3fs-minecraft</id>
             <url>https://dl.bintray.com/n3fs/minecraft</url>
+        </repository>
+        <repository>
+            <id>Vankka-Nexus</id>
+            <url>https://nexus.vankka.dev/repository/maven-public/</url>
         </repository>
     </repositories>
 
