@@ -6,7 +6,7 @@
 
     <groupId>uk.co.n3fs.mc</groupId>
     <artifactId>gCV-Bridge</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <name>gCV-Bridge</name>
 
     <properties>
@@ -165,7 +165,7 @@
         <dependency>
             <groupId>com.velocitypowered</groupId>
             <artifactId>velocity-api</artifactId>
-            <version>1.0.9-SNAPSHOT</version>
+            <version>1.0.10</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -176,7 +176,7 @@
         <dependency>
             <groupId>org.javacord</groupId>
             <artifactId>javacord</artifactId>
-            <version>3.0.6</version>
+            <version>3.1.1</version>
             <type>pom</type>
         </dependency>
         <dependency>
