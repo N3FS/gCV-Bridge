@@ -192,8 +192,8 @@
             <groupId>me.crypnotic</groupId>
             <artifactId>neutron-n3fs</artifactId>
             <scope>system</scope>
-            <version>3.0.0-SNAPSHOT</version>
-            <systemPath>${basedir}/lib/Neutron_N3FS.jar</systemPath>
+            <version>4.0.0-SNAPSHOT</version>
+            <systemPath>${basedir}/lib/Neutron-N3FS-4.0.0-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>dev.vankka</groupId>
