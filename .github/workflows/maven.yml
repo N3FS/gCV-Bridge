@@ -22,6 +22,6 @@ jobs:
       - name: Archive artifact
         uses: actions/upload-artifact@v2.2.0
         with:
-          name: Artifact
+          name: "gCV-Bridge"
           path: "target/gCV-Bridge-*.jar"
           if-no-files-found: error

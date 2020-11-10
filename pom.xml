@@ -6,7 +6,7 @@
 
     <groupId>uk.co.n3fs.mc</groupId>
     <artifactId>gCV-Bridge</artifactId>
-    <version>0.2.1-SNAPSHOT</version>
+    <version>0.2.1</version>
     <name>gCV-Bridge</name>
 
     <properties>
@@ -14,8 +14,11 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
+        <!-- For release -->
+        <full.version>${project.version}</full.version>
+
         <!--suppress UnresolvedMavenProperty -->
-        <full.version>${project.version}-dev-${git.closest.tag.commit.count}</full.version>
+        <!--<full.version>${project.version}-dev-${git.closest.tag.commit.count}</full.version>-->
     </properties>
 
     <build>
