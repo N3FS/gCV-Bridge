@@ -6,7 +6,7 @@
 
     <groupId>uk.co.n3fs.mc</groupId>
     <artifactId>gCV-Bridge</artifactId>
-    <version>0.2.1</version>
+    <version>0.2.2</version>
     <name>gCV-Bridge</name>
 
     <properties>
@@ -98,6 +98,7 @@
                                     <include>org.yaml:snakeyaml</include>
                                     <include>com.vdurmont:emoji-java</include>
                                     <include>org.json:json</include>
+                                    <include>io.vavr:vavr</include>
                                     <include>io.vavr:vavr</include>
                                 </includes>
                             </artifactSet>
