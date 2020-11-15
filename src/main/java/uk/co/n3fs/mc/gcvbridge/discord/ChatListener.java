@@ -3,11 +3,11 @@ package uk.co.n3fs.mc.gcvbridge.discord;
 import com.vdurmont.emoji.EmojiParser;
 import com.velocitypowered.api.proxy.ProxyServer;
 import me.lucko.gchat.api.ChatFormat;
-import net.kyori.text.TextComponent;
-import net.kyori.text.event.ClickEvent;
-import net.kyori.text.event.HoverEvent;
-import net.kyori.text.serializer.legacy.LegacyComponentSerializer;
-import net.kyori.text.serializer.plain.PlainComponentSerializer;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer;
 import org.javacord.api.entity.message.MessageAuthor;
 import org.javacord.api.event.message.MessageCreateEvent;
 import uk.co.n3fs.mc.gcvbridge.GCVBridge;
@@ -16,6 +16,11 @@ public class ChatListener {
 
     private final GCVBridge plugin;
     private final ProxyServer proxy;
+
+    private static final LegacyComponentSerializer LEGACY_LINKING_SERIALIZER = LegacyComponentSerializer.builder()
+            .character('&')
+            .extractUrls()
+            .build();
 
     public ChatListener(GCVBridge plugin, ProxyServer proxy) {
         this.plugin = plugin;
@@ -38,13 +43,13 @@ public class ChatListener {
         ClickEvent.Action clickType = format.getClickType();
         String clickValue = replacePlaceholders(format.getClickValue(), author, message);
 
-        TextComponent component = LegacyComponentSerializer.legacyLinking().deserialize(formattedMsg, '&').toBuilder()
+        TextComponent component = LEGACY_LINKING_SERIALIZER.deserialize(formattedMsg).toBuilder()
             .applyDeep(m -> {
                 if (hover != null) {
-                    m.hoverEvent(HoverEvent.of(HoverEvent.Action.SHOW_TEXT, LegacyComponentSerializer.legacy().deserialize(hover, '&')));
+                    m.hoverEvent(HoverEvent.showText(LegacyComponentSerializer.legacy('&').deserialize(hover)));
                 }
                 if (clickType != null) {
-                    m.clickEvent(ClickEvent.of(clickType, clickValue));
+                    m.clickEvent(ClickEvent.clickEvent(clickType, clickValue));
                 }
             })
             .build();
@@ -53,7 +58,7 @@ public class ChatListener {
             .filter(player -> !plugin.getConfig().isRequireSeePerm() || player.hasPermission("gcvb.see"))
             .forEach(player -> player.sendMessage(component));
 
-        plugin.getLogger().info(PlainComponentSerializer.INSTANCE.serialize(component));
+        plugin.getLogger().info(PlainComponentSerializer.plain().serialize(component));
     }
 
     private static String replacePlaceholders(String format, MessageAuthor author, String message) {
