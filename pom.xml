@@ -96,7 +96,8 @@
                                     <include>com.vdurmont:emoji-java</include>
                                     <include>org.json:json</include>
                                     <include>io.vavr:vavr</include>
-                                    <include>io.vavr:vavr</include>
+                                    <include>dev.vankka:MCDiscordReserializer</include>
+                                    <include>dev.vankka:SimpleAST</include>
                                 </includes>
                             </artifactSet>
                             <relocations>
@@ -127,6 +128,10 @@
                                 <relocation>
                                     <pattern>io.vavr</pattern>
                                     <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.vavr</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>dev.vankka</pattern>
+                                    <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.vankka</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
