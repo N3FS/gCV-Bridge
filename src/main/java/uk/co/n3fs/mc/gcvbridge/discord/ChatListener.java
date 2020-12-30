@@ -52,7 +52,7 @@ public class ChatListener {
 
         MessageAuthor author = event.getMessageAuthor();
 
-        ChatFormat format = plugin.getConfig().getInFormat(plugin.getGChatApi());
+        ChatFormat format = plugin.getConfig().getInFormat();
         String message = event.getReadableMessageContent();
         message = EmojiParser.parseToAliases(message);
 

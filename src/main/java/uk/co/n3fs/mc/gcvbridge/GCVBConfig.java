@@ -29,10 +29,10 @@ public class GCVBConfig {
     private final boolean requireSeePerm;
     private final boolean requireSendPerm;
 
-    private final String gchatInFormat;
+    private final ChatFormat gchatInFormat;
     private final String neutronAlertFormat;
 
-    public GCVBConfig(ConfigurationNode root) throws Exception {
+    public GCVBConfig(GChatApi gcApi, ConfigurationNode root) throws Exception {
         this.root = root;
 
         token = root.getNode("discord", "token").getString();
@@ -54,7 +54,12 @@ public class GCVBConfig {
         requireSeePerm = root.getNode("velocity", "require-see-permission").getBoolean(false);
         requireSendPerm = root.getNode("velocity", "require-send-permission").getBoolean(false);
 
-        gchatInFormat = root.getNode("gchat", "in-format").getString("default");
+        String gchatFormatName = root.getNode("gchat", "in-format").getString("default");
+        gchatInFormat = gcApi.getFormats().stream()
+                .filter(format -> format.getId().equalsIgnoreCase(gchatFormatName))
+                .findFirst()
+                .orElseThrow(() -> new InvalidConfigException("The format specified by in-format does not exist in the gChat config!"));
+
         neutronAlertFormat = root.getNode("neutron", "alert-format").getString("**BROADCAST** {message}");
     }
 
@@ -120,11 +125,8 @@ public class GCVBConfig {
         return requireSendPerm;
     }
 
-    public ChatFormat getInFormat(GChatApi gcApi) {
-        return gcApi.getFormats().stream()
-            .filter(format -> format.getId().equalsIgnoreCase(gchatInFormat))
-            .findFirst()
-            .orElse(null);
+    public ChatFormat getInFormat() {
+        return gchatInFormat;
     }
 
     public String getNeutronAlertFormat() {

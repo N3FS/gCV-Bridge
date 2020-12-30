@@ -115,7 +115,7 @@ public class GCVBridge {
             .setFile(getBundledFile("config.yml"))
             .build()
             .load();
-        return new GCVBConfig(config);
+        return new GCVBConfig(gcApi, config);
     }
 
     private void startBot() {
