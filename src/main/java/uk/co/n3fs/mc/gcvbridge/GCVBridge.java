@@ -58,6 +58,8 @@ public class GCVBridge {
     public void onProxyInit(ProxyInitializeEvent event) {
         logger.info("Enabling gCV-Bridge v" + getDescription().getVersion().get());
 
+        gcApi = GChat.getApi();
+
         // Attempt to load config
         try {
             this.config = loadConfig();
@@ -72,7 +74,6 @@ public class GCVBridge {
             proxy.getEventManager().register(this, new NeutronListener(this));
         }
 
-        gcApi = GChat.getApi();
         startBot();
     }
 
