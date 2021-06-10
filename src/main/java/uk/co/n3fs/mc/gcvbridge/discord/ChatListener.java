@@ -57,8 +57,7 @@ public class ChatListener {
             return;
         }
 
-	// @TODO: remove .getHChatApi call?
-        ChatFormat format = plugin.getConfig().getInFormat(plugin.getGChatApi());
+        ChatFormat format = plugin.getConfig().getInFormat();
 
         String message = event.getReadableMessageContent();
         message = EmojiParser.parseToAliases(message);

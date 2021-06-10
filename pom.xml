@@ -190,7 +190,7 @@
             <artifactId>gchat-velocity</artifactId>
             <version>2.1.2</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/../gChat/target/gChat-Velocity-2.1.2-SNAPSHOT-dev-5.jar</systemPath>
+            <systemPath>${project.basedir}/../gChat/target/gChat-Velocity-2.1.2-SNAPSHOT-dev-7.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.vdurmont</groupId>
