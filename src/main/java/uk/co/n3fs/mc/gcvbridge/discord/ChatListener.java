@@ -52,11 +52,31 @@ public class ChatListener {
 
         MessageAuthor author = event.getMessageAuthor();
 
-        ChatFormat format = plugin.getConfig().getInFormat();
+        // Ignore webhook authors (probably ourselves)
+        if (author.isWebhook()) {
+            return;
+        }
+
+	// @TODO: remove .getHChatApi call?
+        ChatFormat format = plugin.getConfig().getInFormat(plugin.getGChatApi());
+
         String message = event.getReadableMessageContent();
         message = EmojiParser.parseToAliases(message);
 
-        Component hover = formatMessage(format.getHoverText(), author, message);
+        if (format == null) {
+            return;
+        }
+
+        String hover_text = format.getHoverText();
+
+        final Component hover;
+
+        if (hover_text != null) {
+            hover = formatMessage(format.getHoverText(), author, message);
+        } else {
+            hover = null;
+        }
+
         ClickEvent.Action clickType = format.getClickType();
         String clickValue = replacePlaceholders(format.getClickValue(), author, message);
 

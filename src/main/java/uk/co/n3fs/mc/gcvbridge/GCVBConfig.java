@@ -28,6 +28,7 @@ public class GCVBConfig {
     private final String quitFormat;
     private final boolean requireSeePerm;
     private final boolean requireSendPerm;
+    private final String out_webhook;
 
     private final ChatFormat gchatInFormat;
     private final String neutronAlertFormat;
@@ -36,6 +37,7 @@ public class GCVBConfig {
         this.root = root;
 
         token = root.getNode("discord", "token").getString();
+        out_webhook = root.getNode("discord", "out-webhook").getString();
         inChannels = root.getNode("discord", "in-channels").getList(TypeToken.of(Long.class));
         outChannels = root.getNode("discord", "out-channels").getList(TypeToken.of(Long.class));
 
@@ -71,6 +73,10 @@ public class GCVBConfig {
 
     public String getToken() {
         return token;
+    }
+
+    public String getOutWebhook() {
+        return out_webhook;
     }
 
     public List<TextChannel> getInChannels(DiscordApi dApi) {

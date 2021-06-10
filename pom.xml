@@ -98,6 +98,7 @@
                                     <include>io.vavr:vavr</include>
                                     <include>dev.vankka:MCDiscordReserializer</include>
                                     <include>dev.vankka:SimpleAST</include>
+                                    <include>club.minnced:discord-webhooks</include>
                                 </includes>
                             </artifactSet>
                             <relocations>
@@ -187,8 +188,9 @@
         <dependency>
             <groupId>uk.co.n3fs.mc</groupId>
             <artifactId>gchat-velocity</artifactId>
-            <version>2.1.2-SNAPSHOT</version>
-            <scope>provided</scope>
+            <version>2.1.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../gChat/target/gChat-Velocity-2.1.2-SNAPSHOT-dev-5.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.vdurmont</groupId>
@@ -215,6 +217,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>club.minnced</groupId>
+            <artifactId>discord-webhooks</artifactId>
+            <version>0.5.3</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -233,6 +241,11 @@
         <repository>
             <id>Vankka-Nexus</id>
             <url>https://nexus.vankka.dev/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <name>jcenter</name>
+            <id>bintray-jcenter</id>
+            <url>https://jcenter.bintray.com</url>
         </repository>
     </repositories>
 
