@@ -18,6 +18,7 @@ public class GCVBConfig {
     private final String token;
     private final List<Long> inChannels;
     private final List<Long> outChannels;
+    private final List<String> webhooks;
     private final boolean playerlistEnabled;
     private final String playerlistFormat;
     private final String playerlistSeparator;
@@ -38,6 +39,8 @@ public class GCVBConfig {
         token = root.getNode("discord", "token").getString();
         inChannels = root.getNode("discord", "in-channels").getList(TypeToken.of(Long.class));
         outChannels = root.getNode("discord", "out-channels").getList(TypeToken.of(Long.class));
+
+        webhooks = root.getNode("discord", "webhooks").getList(TypeToken.of(String.class));
 
         playerlistEnabled = root.getNode("discord", "playerlist", "enabled").getBoolean(true);
         playerlistFormat = root.getNode("discord", "playerlist", "format").getString("**{count} players online:** ```\n{players}\n```");
@@ -87,6 +90,10 @@ public class GCVBConfig {
             .filter(Optional::isPresent)
             .map(Optional::get)
             .collect(Collectors.toList());
+    }
+
+    public List<String> getWebhooks(DiscordApi dApi) {
+        return webhooks;
     }
 
     public boolean isPlayerlistEnabled() {

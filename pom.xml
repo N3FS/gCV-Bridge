@@ -98,6 +98,7 @@
                                     <include>io.vavr:vavr</include>
                                     <include>dev.vankka:MCDiscordReserializer</include>
                                     <include>dev.vankka:SimpleAST</include>
+                                    <include>club.minnced:*</include>
                                 </includes>
                             </artifactSet>
                             <relocations>
@@ -132,6 +133,10 @@
                                 <relocation>
                                     <pattern>dev.vankka</pattern>
                                     <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.vankka</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>club.minnced</pattern>
+                                    <shadedPattern>uk.co.n3fs.mc.gcvbridge.lib.minnced</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
@@ -168,7 +173,7 @@
         <dependency>
             <groupId>com.velocitypowered</groupId>
             <artifactId>velocity-api</artifactId>
-            <version>1.1.3</version>
+            <version>3.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -215,6 +220,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>club.minnced</groupId>
+            <artifactId>discord-webhooks</artifactId>
+            <version>0.1.6</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -233,6 +243,11 @@
         <repository>
             <id>Vankka-Nexus</id>
             <url>https://nexus.vankka.dev/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <name>jcenter</name>
+            <id>bintray-jcenter</id>
+            <url>https://jcenter.bintray.com</url>
         </repository>
     </repositories>
 

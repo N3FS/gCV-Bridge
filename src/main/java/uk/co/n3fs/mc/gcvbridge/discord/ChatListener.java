@@ -49,6 +49,7 @@ public class ChatListener {
             return;
         if (!plugin.getConfig().getInChannels(event.getApi()).contains(event.getChannel())) return;
         if (event.getMessageAuthor().isYourself()) return;
+        if (!event.getMessageAuthor().isUser()) return;
 
         MessageAuthor author = event.getMessageAuthor();
 
