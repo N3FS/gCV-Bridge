@@ -77,8 +77,3 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-jar {
-    from {
-        configurations.implementation.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-}

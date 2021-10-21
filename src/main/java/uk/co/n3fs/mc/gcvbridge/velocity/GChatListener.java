@@ -1,7 +1,11 @@
 package uk.co.n3fs.mc.gcvbridge.velocity;
 
+import com.velocitypowered.api.event.PostOrder;
 import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.connection.DisconnectEvent;
+import com.velocitypowered.api.event.player.ServerConnectedEvent;
 import me.lucko.gchat.api.events.GChatMessageFormedEvent;
+import net.kyori.adventure.text.Component;
 import uk.co.n3fs.mc.gcvbridge.GCVBridge;
 import uk.co.n3fs.mc.gcvbridge.util.TextUtil;
 
@@ -44,26 +48,64 @@ public class GChatListener {
         Player player = event.getSender();
 
         if (plugin.getConfig().isRequireSendPerm() && !player.hasPermission("gcvb.send")) return;
-        final String msg = TextUtil.stripString(TextUtil.toMarkdown(event.getMessage()));
+
+        this.sendToDiscord(player, event.getMessage(), event.getRawMessage());
+    }
+
+    @Subscribe(order = PostOrder.NORMAL)
+    public void onJoinServer(ServerConnectedEvent e) {
+        Player player = e.getPlayer();
+        this.sendToDiscord(player, "```fix\nlogged on\n```", null);
+    }
+
+    @Subscribe(order = PostOrder.NORMAL)
+    public void onLogout(DisconnectEvent e) {
+        Player player = e.getPlayer();
+        this.sendToDiscord(player, "```fix\nlogged off\n```", null);
+    }
+
+    /**
+     * Broadcast a message to Discord
+     *
+     * @param source        The originating player
+     * @param message       The message as a Component
+     * @param raw_message   The raw message as a string
+     */
+    public void sendToDiscord(Player source, Component message, String raw_message) {
+        final String msg = TextUtil.stripString(TextUtil.toMarkdown(message));
+        this.sendToDiscord(source, msg, raw_message);
+    }
+
+    /**
+     * Broadcast a message to Discord
+     *
+     * @param source        The originating player
+     * @param message       The message as a Component
+     * @param raw_message   The raw message as a string
+     */
+    public void sendToDiscord(Player source, String message, String raw_message) {
+
+        if (raw_message == null) {
+            raw_message = message;
+        }
 
         if (this.has_webhook) {
             WebhookMessageBuilder builder = new WebhookMessageBuilder();
 
-            builder.setUsername(player.getUsername());
+            builder.setUsername(source.getUsername());
 
-            String avatar_url = "https://crafatar.com/avatars/" + player.getUniqueId();
+            String avatar_url = "https://crafatar.com/avatars/" + source.getUniqueId();
 
             builder.setAvatarUrl(avatar_url);
 
-            String raw_msg = event.getRawMessage();
-
-            builder.setContent(raw_msg);
+            builder.setContent(raw_message);
 
             this.client.send(builder.build());
         }
 
         plugin.getConfig().getOutChannels(plugin.getDApi())
-                .forEach(textChannel -> textChannel.sendMessage(msg));
+                .forEach(textChannel -> textChannel.sendMessage(message));
+
     }
 
 }
