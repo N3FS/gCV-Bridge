@@ -1,17 +1,18 @@
 package uk.co.n3fs.mc.gcvbridge.velocity;
 
+import club.minnced.discord.webhook.WebhookClient;
+import club.minnced.discord.webhook.WebhookClientBuilder;
+import club.minnced.discord.webhook.send.WebhookMessageBuilder;
 import com.velocitypowered.api.event.PostOrder;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
-import com.velocitypowered.api.event.player.ServerConnectedEvent;
+import com.velocitypowered.api.event.connection.LoginEvent;
+import com.velocitypowered.api.proxy.Player;
+import me.lucko.gchat.GChatPlayer;
 import me.lucko.gchat.api.events.GChatMessageFormedEvent;
 import net.kyori.adventure.text.Component;
 import uk.co.n3fs.mc.gcvbridge.GCVBridge;
 import uk.co.n3fs.mc.gcvbridge.util.TextUtil;
-
-import com.velocitypowered.api.proxy.Player;
-import club.minnced.discord.webhook.*;
-import club.minnced.discord.webhook.send.*;
 
 public class GChatListener {
 
@@ -53,7 +54,7 @@ public class GChatListener {
     }
 
     @Subscribe(order = PostOrder.NORMAL)
-    public void onJoinServer(ServerConnectedEvent e) {
+    public void onLogin(LoginEvent e) {
         Player player = e.getPlayer();
         this.sendToDiscord(player, "```fix\nlogged on\n```", null);
     }
@@ -92,7 +93,18 @@ public class GChatListener {
         if (this.has_webhook) {
             WebhookMessageBuilder builder = new WebhookMessageBuilder();
 
-            builder.setUsername(source.getUsername());
+            GChatPlayer gplayer = new GChatPlayer(source);
+
+            String name = gplayer.getNickname();
+
+            if (name == null || name.isEmpty()) {
+                name = source.getUsername();
+            } else {
+                name = name.replaceAll("§\\d+", "");
+                name = name.replaceAll("&\\d+", "");
+            }
+
+            builder.setUsername(name);
 
             String avatar_url = "https://crafatar.com/avatars/" + source.getUniqueId();
 

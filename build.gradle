@@ -16,6 +16,11 @@ repositories {
         url 'https://ci.lucko.me/plugin/repository/everything/'
     }
 
+    // Use our own build of gchat
+    flatDir {
+        dirs '../gChat/build/libs/'
+    }
+
     maven {
         name 'velocity'
         url 'https://nexus.velocitypowered.com/repository/maven-public/'
@@ -57,7 +62,7 @@ dependencies {
     compileOnly 'com.velocitypowered:velocity-api:3.0.1'
 
     compileOnly 'uk.co.n3fs.mc:Neutron-N3FS:5.0.0-SNAPSHOT'
-    compileOnly 'uk.co.n3fs.mc:gchat-velocity:3.0.0-SNAPSHOT'
+    compileOnly 'uk.co.n3fs.mc:gchat-velocity:3.0.1-SNAPSHOT'
 }
 
 group = 'uk.co.n3fs.mc'
