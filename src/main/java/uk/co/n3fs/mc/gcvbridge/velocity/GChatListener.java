@@ -106,7 +106,7 @@ public class GChatListener {
 
             builder.setUsername(name);
 
-            String avatar_url = "https://crafatar.com/avatars/" + source.getUniqueId();
+            String avatar_url = "https://mc-heads.net/avatar/" + source.getUniqueId();
 
             builder.setAvatarUrl(avatar_url);
 
